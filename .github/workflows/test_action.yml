@@ -11,5 +11,7 @@ jobs:
       - id: run-callback
         name: Run callback
         uses: ./
+        with:
+          ref: "master"
       - name: Callback return
         run: echo "The output was ${{ steps.run-callback.outputs.callback_return }}"
