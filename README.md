@@ -1,7 +1,7 @@
-# Run callback on list of files
+# Run callback on list of filenames
 
-Github action for running a callback after pulling the list of files belonging to a Git REF (SHA1, tag or
-branch).
+Github action for running a callback after pulling the list of filenames belonging to either a Git REF (SHA1, tag or
+branch) or a given pull request number.
 
 ## Contributing
 Contributing information available in [CONTRIBUTING](./CONTRIBUTING.md)

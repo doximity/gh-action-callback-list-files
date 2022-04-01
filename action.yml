@@ -1,14 +1,16 @@
-name: 'Run callback on list of files'
-description: 'Runs a custom callback on a list of files belonging to REF'
+name: 'Run callback on list of filenames'
+description: 'Runs a custom callback on a list of filenames (from either REF or PR number)'
 inputs:
   callback:
     description: 'Callback function that takes the payload as argument'
     required: true
     default: |
-      return filesList
+      return filenamesList
   ref:
+    required: false
     default: 'main'
   pr_number:
+    required: false
   repository:
     required: true
     default: ${{ github.repository }}

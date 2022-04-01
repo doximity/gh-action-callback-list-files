@@ -1,6 +1,6 @@
 const core = require('@actions/core')
 const github = require('@actions/github')
-const { listRefFiles } = require('./list_ref_files')
+const { listFilenames } = require('./list_filenames')
 
 async function main() {
   try {
@@ -12,10 +12,10 @@ async function main() {
       token: core.getInput('token')
     }
 
-    const filesList = await listRefFiles(inputs)
+    const filenamesList = await listRefFiles(inputs)
 
-    const callbackFn = new Function('filesList', inputs.callback)
-    const result = callbackFn(filesList)
+    const callbackFn = new Function('filenamesList', inputs.callback)
+    const result = callbackFn(filenamesList)
 
     core.setOutput('callback_return', result)
   } catch (error) {
