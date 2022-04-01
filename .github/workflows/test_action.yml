@@ -3,6 +3,9 @@ on: [push]
 jobs:
   test_action:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       # To use this repository's private action,
       # we must check out the repository
