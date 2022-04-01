@@ -33,12 +33,12 @@ branch) or a pull request number.
 
     # The function that will be passed a list of filenames and executed afterwards.
     #
-    # It receives only one parameter, listFilenames, an array of filename strings
+    # It receives only one parameter, filenamesList, an array of filename strings
     # which you can reference from your function's body.
     #
     # The return of your function is set as the `callback_return` output of this
     # action, allowing you to reference that return value from other steps in your workflow.
-    # Default: return listFilenames
+    # Default: return filenamesList
     callback: ''
 ```
 
