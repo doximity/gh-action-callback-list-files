@@ -7,8 +7,8 @@ inputs:
     default: |
       return filesList
   ref:
-    required: true
     default: 'main'
+  pr_number:
   repository:
     required: true
     default: ${{ github.repository }}
