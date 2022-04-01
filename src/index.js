@@ -12,7 +12,6 @@ async function main() {
     }
 
     const filenamesList = await listFilenames(inputs)
-
     const callbackFn = new Function('filenamesList', inputs.callback)
     const result = callbackFn(filenamesList)
 
