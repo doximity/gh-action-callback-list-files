@@ -11,10 +11,13 @@ jobs:
       # we must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-      - id: run-callback
-        name: Run callback
+      - id: check-for-readme-changes
         uses: ./
         with:
-          pr_number: 1
-      - name: Callback return
-        run: echo "The output was ${{ steps.run-callback.outputs.callback_return }}"
+          ref: master
+          callback: |
+            return filenamesList.some((elem) => { return elem.match(/README/) })
+      - name: Run this step only if README changes are detected
+        if: ${{ steps.check-for-readme-changes.outputs.callback_return == 'true' }}
+        run: |
+          echo "This REF includes README changes"
