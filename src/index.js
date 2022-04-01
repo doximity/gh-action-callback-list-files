@@ -8,7 +8,7 @@ async function main() {
       callback: core.getInput('callback'),
       repository: core.getInput('repository'),
       ref: core.getInput('ref'),
-      pr_number: core.getInput('pr_number'),
+      prNumber: core.getInput('pr_number'),
       token: core.getInput('token')
     }
 
