@@ -12,7 +12,7 @@ async function main() {
       token: core.getInput('token')
     }
 
-    const filenamesList = await listRefFiles(inputs)
+    const filenamesList = await listFilenames(inputs)
 
     const callbackFn = new Function('filenamesList', inputs.callback)
     const result = callbackFn(filenamesList)

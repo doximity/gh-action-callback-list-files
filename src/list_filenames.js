@@ -39,7 +39,7 @@ class pullRequestStrategy extends baseStrategy {
   }
 }
 
-class refStrategy {
+class refStrategy extends baseStrategy {
   filterPayload(payload) {
     return payload["files"].map((fileMetadata) => {
       return fileMetadata["filename"]
