@@ -1,0 +1,15 @@
+on: [push]
+
+jobs:
+  test_action:
+    runs-on: ubuntu-latest
+    steps:
+      # To use this repository's private action,
+      # we must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - id: run-callback
+        name: Run callback
+        uses: ./
+      - name: Callback return
+        run: echo "The output was ${{ steps.run-callback.outputs.callback_return }}"

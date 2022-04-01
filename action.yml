@@ -1,0 +1,23 @@
+name: 'Run callback on list of files'
+description: 'Runs a custom callback on a list of files belonging to REF'
+inputs:
+  callback:
+    description: 'Callback function that takes the payload as argument'
+    required: true
+    default: |
+      return payload
+  ref:
+    required: true
+    default: 'main'
+  repository:
+    required: true
+    default: ${{ github.repository }}
+  token:
+    required: true
+    default: ${{ github.token }}
+outputs:
+  callback_return:
+    description: 'The return of the callback function'
+runs:
+  using: 'node16'
+  main: 'src/index.js'
