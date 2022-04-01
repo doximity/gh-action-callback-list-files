@@ -5,7 +5,7 @@ inputs:
     description: 'Callback function that takes the payload as argument'
     required: true
     default: |
-      return payload
+      return filesList
   ref:
     required: true
     default: 'main'
