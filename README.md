@@ -41,9 +41,48 @@ branch) or a pull request number.
     # Default: return filenamesList
     callback: ''
 ```
+# Scenarios
+- [List all filenames for a pull request](#List-all-filenames-for-a-pull-request)
+- [List all filenames for master HEAD](#List-all-filenames-for-master-head)
+- [Use action's output from another step in a
+  workflow](#Use-action-s-output-from-another-step-in-a-workflow)
 
-## Contributing
+## List all filenames for a pull request
+
+```yaml
+- uses: doximity/gh-action-callback-list-files@v0.0.1
+  with:
+    repository: owner/repo
+    pr_number: 250
+```
+
+## List all filenames for master HEAD
+
+```yaml
+- uses: doximity/gh-action-callback-list-files@v0.0.1
+  with:
+    repository: owner/repo
+    ref: master
+```
+
+## Use action's output from another step in a workflow
+
+```yaml
+- uses: doximity/gh-action-callback-list-files@v0.0.1
+  id: check-for-graphql-changes
+  with:
+    repository: owner/repo
+    pr_number: 200
+    callback: |
+      return filenamesList.some((elem) => { return elem.match(/graphql/) })
+- name: Run this step only if GraphQL changes are detected
+  if: ${{ steps.check-for-graphql-changes.outputs.callback_return == 'true' }}
+  run: |
+    echo "This PR includes GraphQL changes"
+```
+
+# Contributing
 Contributing information available in [CONTRIBUTING](./CONTRIBUTING.md)
 
-## License
+# License
 The gem is available as open source under the terms of the [Apache 2.0 License](./LICENSE).
