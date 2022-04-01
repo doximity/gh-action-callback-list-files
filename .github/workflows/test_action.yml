@@ -12,6 +12,6 @@ jobs:
         name: Run callback
         uses: ./
         with:
-          ref: "np-kick-off"
+          pr_number: 1
       - name: Callback return
         run: echo "The output was ${{ steps.run-callback.outputs.callback_return }}"
