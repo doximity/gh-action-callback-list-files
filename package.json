@@ -6,17 +6,9 @@
   "repository": "git@github.com:doximity/gh-action-callback-list-files.git",
   "author": "Nicholas Pufal <npufal@doximity.com>",
   "license": "Apache v2",
-  "scripts": {
-    "lint": "eslint src"
-  },
   "dependencies": {
     "@actions/core": "^1.6.0",
     "@actions/github": "^5.0.1",
     "axios": "^0.26.1"
-  },
-  "devDependencies": {
-    "eslint": "^8.12.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
   }
 }
