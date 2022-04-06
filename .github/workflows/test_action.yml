@@ -1,0 +1,23 @@
+on: [push]
+
+jobs:
+  test_action:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      # To use this repository's private action,
+      # we must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - id: check-for-readme-changes
+        uses: ./
+        with:
+          ref: master
+          callback: |
+            return filenamesList.some((elem) => { return elem.match(/README/) })
+      - name: Run this step only if README changes are detected
+        if: ${{ steps.check-for-readme-changes.outputs.callback_return == 'true' }}
+        run: |
+          echo "This REF includes README changes"

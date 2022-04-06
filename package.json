@@ -1,0 +1,13 @@
+{
+  "name": "gh-action-callback-list-files",
+  "version": "0.0.1",
+  "description": "Github action for running a callback after pulling a list of filenames",
+  "main": "src/index.js",
+  "repository": "git@github.com:doximity/gh-action-callback-list-files.git",
+  "author": "Nicholas Pufal <npufal@doximity.com>",
+  "license": "Apache v2",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "axios": "^0.26.1"
+  }
+}
