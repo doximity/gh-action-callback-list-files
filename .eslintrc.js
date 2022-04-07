@@ -11,5 +11,7 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
+    "no-new-func": "off",
+    "class-methods-use-this": "off"
   },
 };
