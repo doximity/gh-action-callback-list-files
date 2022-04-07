@@ -3,7 +3,7 @@ const RefStrategy = require('./strategies/ref');
 
 function validateInputs(inputs) {
   if (inputs.ref && inputs.prNumber) {
-    throw new Error('The options ref and pr_number are mutually exclusive — pick one!');
+    throw new Error('The inputs ref and pr_number are mutually exclusive — pick one!');
   }
 
   if ((inputs.ref === undefined) && (inputs.prNumber === undefined)) {
