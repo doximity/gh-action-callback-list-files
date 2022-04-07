@@ -11,7 +11,8 @@
     "axios": "^0.26.1"
   },
   "scripts": {
-    "dist": "bash scripts/dist.sh"
+    "dist": "bash scripts/dist.sh",
+    "lint": "eslint src/"
   },
   "devDependencies": {
     "eslint": "^8.12.0",
