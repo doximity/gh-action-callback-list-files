@@ -44,8 +44,7 @@ branch) or a pull request number.
 # Scenarios
 - [List all filenames for a pull request](#List-all-filenames-for-a-pull-request)
 - [List all filenames for master HEAD](#List-all-filenames-for-master-head)
-- [Use action's output from another step in a
-  workflow](#Use-action-s-output-from-another-step-in-a-workflow)
+- [Use action's output from another step in a workflow](#Use-actions-output-from-another-step-in-a-workflow)
 
 ## List all filenames for a pull request
 
