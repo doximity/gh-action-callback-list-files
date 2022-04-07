@@ -12,5 +12,9 @@
   },
   "scripts": {
     "dist": "bash scripts/dist.sh"
+  },
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "jest": "^27.5.1"
   }
 }
