@@ -11,6 +11,6 @@
     "axios": "^0.26.1"
   },
   "scripts": {
-    "dist": "ncc build src/index.js"
+    "dist": "bash scripts/dist.sh"
   }
 }
