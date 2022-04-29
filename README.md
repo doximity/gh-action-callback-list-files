@@ -91,5 +91,14 @@ branch) or a pull request number.
 7. Create a Pull Request
 8. Sign the CLA if you haven't yet. See [CONTRIBUTING](./CONTRIBUTING.md)
 
+# Test automation
+
+The behavior for this GH action is verified by two layers of testing:
+- Unit: `npm run test` can be run locally and is also run on every push
+to a branch. Unit test coverage is a bit limited at the moment so contributions to
+improve it are more than welcome!
+- E2E: The actual action runs on every push to a branch which works as an E2E smoke test.
+See [this workflow file](./.github/workflows/test_action.yml) for details.
+
 # License
 The gem is available as open source under the terms of the [Apache 2.0 License](./LICENSE).
