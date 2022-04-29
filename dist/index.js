@@ -4645,23 +4645,23 @@ exports.debug = debug; // for test
 /***/ 8660:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const axios = __nccwpck_require__(9733)
+const axios = __nccwpck_require__(9733);
 
 class GithubApiClient {
   constructor(token) {
     this.client = axios.create({
       baseURL: 'https://api.github.com',
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   async get(path) {
-    const result = await this.client.get(path)
-    return result.data
+    const result = await this.client.get(path);
+    return result.data;
   }
 }
 
-module.exports = GithubApiClient
+module.exports = GithubApiClient;
 
 
 /***/ }),
@@ -4669,35 +4669,35 @@ module.exports = GithubApiClient
 /***/ 7433:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const PullRequestStrategy = __nccwpck_require__(5725)
-const RefStrategy = __nccwpck_require__(9297)
+const PullRequestStrategy = __nccwpck_require__(5725);
+const RefStrategy = __nccwpck_require__(9297);
 
 function validateInputs(inputs) {
   if (inputs.ref && inputs.prNumber) {
-    throw new Error("The options ref and pr_number are mutually exclusive — pick one!")
+    throw new Error('The inputs ref and pr_number are mutually exclusive — pick one!');
   }
 
   if ((inputs.ref === undefined) && (inputs.prNumber === undefined)) {
-    throw new Error("You have to specify either ref or pr_number for this action to work")
+    throw new Error('You have to specify either ref or pr_number for this action to work');
   }
 }
 
 async function listFilenames(inputs) {
-  validateInputs(inputs)
+  validateInputs(inputs);
 
-  let strategy
+  let strategy;
   if (inputs.prNumber) {
-    strategy = new PullRequestStrategy(inputs)
+    strategy = new PullRequestStrategy(inputs);
   } else {
-    strategy = new RefStrategy(inputs)
+    strategy = new RefStrategy(inputs);
   }
 
-  return await strategy.filenames()
+  return strategy.filenames();
 }
 
 module.exports = {
-  listFilenames
-}
+  listFilenames,
+};
 
 
 /***/ }),
@@ -4705,32 +4705,34 @@ module.exports = {
 /***/ 296:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const GithubApiClient = __nccwpck_require__(8660)
+const GithubApiClient = __nccwpck_require__(8660);
 
 class BaseStrategy {
-  constructor({ repository, ref, prNumber, token }) {
-    this.httpClient = new GithubApiClient(token)
-    this.repository = repository
-    this.ref = ref
-    this.prNumber = prNumber
-    this.token = token
+  constructor({
+    repository, ref, prNumber, token,
+  }) {
+    this.httpClient = new GithubApiClient(token);
+    this.repository = repository;
+    this.ref = ref;
+    this.prNumber = prNumber;
+    this.token = token;
   }
 
   async filenames() {
-    const payload = await this.fetchPayload()
-    return this.filterPayload(payload)
+    const payload = await this.fetchPayload();
+    return this.filterPayload(payload);
   }
 
   filterPayload() {
-    throw new Error("Implement me!")
+    throw new Error('Implement me!');
   }
 
   async fetchPayload() {
-    throw new Error("Implement me!")
+    throw new Error('Implement me!');
   }
 }
 
-module.exports = BaseStrategy
+module.exports = BaseStrategy;
 
 
 /***/ }),
@@ -4738,21 +4740,19 @@ module.exports = BaseStrategy
 /***/ 5725:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const BaseStrategy = __nccwpck_require__(296)
+const BaseStrategy = __nccwpck_require__(296);
 
 class PullRequestStrategy extends BaseStrategy {
   filterPayload(payload) {
-    return payload.map((item) => {
-      return item["filename"]
-    })
+    return payload.map((item) => item.filename);
   }
 
   async fetchPayload() {
-    return await this.httpClient.get(`/repos/${this.repository}/pulls/${this.prNumber}/files?per_page=100`)
+    return this.httpClient.get(`/repos/${this.repository}/pulls/${this.prNumber}/files?per_page=100`);
   }
 }
 
-module.exports = PullRequestStrategy
+module.exports = PullRequestStrategy;
 
 
 /***/ }),
@@ -4760,21 +4760,19 @@ module.exports = PullRequestStrategy
 /***/ 9297:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const BaseStrategy = __nccwpck_require__(296)
+const BaseStrategy = __nccwpck_require__(296);
 
 class RefStrategy extends BaseStrategy {
   filterPayload(payload) {
-    return payload["files"].map((fileMetadata) => {
-      return fileMetadata["filename"]
-    })
+    return payload.files.map((fileMetadata) => fileMetadata.filename);
   }
 
   async fetchPayload() {
-    return await this.httpClient.get(`/repos/${this.repository}/commits/${this.ref}?per_page=100`)
+    return this.httpClient.get(`/repos/${this.repository}/commits/${this.ref}?per_page=100`);
   }
 }
 
-module.exports = RefStrategy
+module.exports = RefStrategy;
 
 
 /***/ }),
@@ -4932,8 +4930,8 @@ module.exports = require("zlib");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-const core = __nccwpck_require__(8936)
-const { listFilenames } = __nccwpck_require__(7433)
+const core = __nccwpck_require__(8936);
+const { listFilenames } = __nccwpck_require__(7433);
 
 async function main() {
   try {
@@ -4942,20 +4940,20 @@ async function main() {
       repository: core.getInput('repository'),
       ref: core.getInput('ref'),
       prNumber: core.getInput('pr_number'),
-      token: core.getInput('token')
-    }
+      token: core.getInput('token'),
+    };
 
-    const filenamesList = await listFilenames(inputs)
-    const callbackFn = new Function('filenamesList', inputs.callback)
-    const result = callbackFn(filenamesList)
+    const filenamesList = await listFilenames(inputs);
+    const callbackFn = new Function('filenamesList', inputs.callback);
+    const result = callbackFn(filenamesList);
 
-    core.setOutput('callback_return', result)
+    core.setOutput('callback_return', result);
   } catch (error) {
-    core.setFailed(error.message)
+    core.setFailed(error.message);
   }
 }
 
-main()
+main();
 
 })();
 
