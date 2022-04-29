@@ -1,9 +1,9 @@
 module.exports = {
-env: {
+  env: {
     commonjs: true,
     es2021: true,
     node: true,
-    'jest/globals': true
+    'jest/globals': true,
   },
   extends: [
     'airbnb-base',
@@ -13,7 +13,7 @@ env: {
   },
   rules: {
     'no-new-func': 'off',
-    'class-methods-use-this': 'off'
+    'class-methods-use-this': 'off',
   },
-  plugins: ['jest']
+  plugins: ['jest'],
 };
