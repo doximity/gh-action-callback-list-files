@@ -1,20 +1,11 @@
 const { listFilenames } = require('../../src/list_filenames');
-const PullRequestStrategy = require('../../src/strategies/pull_request');
-const RefStrategy = require('../../src/strategies/ref');
-jest.mock('../../src/strategies/pull_request', () => {
-  return jest.fn().mockImplementation(() => {
-    return {
-      filenames: () => { return Promise.resolve(["first_pr_filename.js", "second_pr_filename.js"]) }
-    }
-  })
-});
-jest.mock('../../src/strategies/ref', () => {
-  return jest.fn().mockImplementation(() => {
-    return {
-      filenames: () => { return Promise.resolve(["first_ref_filename.js", "second_ref_filename.js"]) }
-    }
-  })
-});
+
+jest.mock('../../src/strategies/pull_request', () => jest.fn().mockImplementation(() => ({
+  filenames: () => Promise.resolve(['first_pr_filename.js', 'second_pr_filename.js']),
+})));
+jest.mock('../../src/strategies/ref', () => jest.fn().mockImplementation(() => ({
+  filenames: () => Promise.resolve(['first_ref_filename.js', 'second_ref_filename.js']),
+})));
 
 describe('validations', () => {
   test('inputs pr_number and ref inputs are mutually exclusive', async () => {
@@ -38,21 +29,21 @@ describe('validations', () => {
 describe('picking a strategy', () => {
   test('chooses ref when ref input is provided', async () => {
     const inputs = {
-      ref: 'master'
+      ref: 'master',
     };
 
     const result = await listFilenames(inputs);
 
-    expect(result).toEqual(["first_ref_filename.js", "second_ref_filename.js"]);
-  })
+    expect(result).toEqual(['first_ref_filename.js', 'second_ref_filename.js']);
+  });
 
   test('chooses PR when PR number input is provided', async () => {
     const inputs = {
-      prNumber: '123'
+      prNumber: '123',
     };
 
     const result = await listFilenames(inputs);
 
-    expect(result).toEqual(["first_pr_filename.js", "second_pr_filename.js"]);
-  })
+    expect(result).toEqual(['first_pr_filename.js', 'second_pr_filename.js']);
+  });
 });
