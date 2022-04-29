@@ -81,7 +81,15 @@ branch) or a pull request number.
 ```
 
 # Contributing
-Contributing information available in [CONTRIBUTING](./CONTRIBUTING.md)
+
+1. Fork it and `git clone` it into your environment
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Run `npm install` to install dependencies
+4. Make your changes
+5. Ensure `npm run test` and `npm run lint` look good
+6. Run `npm run dist` and commit the artifact
+7. Create a Pull Request
+8. Sign the CLA if you haven't yet. See [CONTRIBUTING](./CONTRIBUTING.md)
 
 # License
 The gem is available as open source under the terms of the [Apache 2.0 License](./LICENSE).
