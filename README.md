@@ -38,6 +38,12 @@ branch) or a pull request number.
     #
     # The return of your function is set as the `callback_return` output of this
     # action, allowing you to reference that return value from other steps in your workflow.
+    #
+    # SECURITY WARNING: make sure you only reference trusted inputs from within the callback
+    # below. Because the code is `eval`'d this can pose a code injection risk if misused.
+    # Read more:
+    # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections
+    #
     # Default: return filenamesList
     callback: ''
 ```
