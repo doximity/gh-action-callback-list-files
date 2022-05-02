@@ -5,7 +5,7 @@ branch) or a pull request number.
 
 # Usage
 ```yaml
-- uses: doximity/gh-action-callback-list-files@v0.0.1
+- uses: doximity/gh-action-callback-list-files@v1.0.0
   with:
     # Repository name with owner. For example, doximity/rake-ui
     # Default: ${{ github.repository }}
@@ -55,7 +55,7 @@ branch) or a pull request number.
 ## List all filenames for a pull request
 
 ```yaml
-- uses: doximity/gh-action-callback-list-files@v0.0.1
+- uses: doximity/gh-action-callback-list-files@v1.0.0
   with:
     repository: owner/repo
     pr_number: 250
@@ -64,7 +64,7 @@ branch) or a pull request number.
 ## List all filenames for master HEAD
 
 ```yaml
-- uses: doximity/gh-action-callback-list-files@v0.0.1
+- uses: doximity/gh-action-callback-list-files@v1.0.0
   with:
     repository: owner/repo
     ref: master
@@ -73,7 +73,7 @@ branch) or a pull request number.
 ## Use action's output from another step in a workflow
 
 ```yaml
-- uses: doximity/gh-action-callback-list-files@v0.0.1
+- uses: doximity/gh-action-callback-list-files@v1.0.0
   id: check-for-graphql-changes
   with:
     repository: owner/repo
