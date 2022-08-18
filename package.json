@@ -7,7 +7,7 @@
   "author": "Nicholas Pufal <npufal@doximity.com>",
   "license": "Apache v2",
   "dependencies": {
-    "@actions/core": "^1.6.0",
+    "@actions/core": "^1.9.1",
     "axios": "^0.26.1"
   },
   "scripts": {
