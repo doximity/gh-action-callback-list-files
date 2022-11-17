@@ -2,4 +2,4 @@
 
 rm -rf node_modules/
 npm install --production
-ncc build src/index.js
+npx @vercel/ncc build src/index.js

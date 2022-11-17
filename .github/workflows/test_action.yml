@@ -10,14 +10,14 @@ jobs:
       # To use this repository's private action,
       # we must check out the repository
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - id: check-for-readme-changes
         uses: ./
         with:
           ref: master
           callback: |
-            return filenamesList.some((elem) => { return elem.match(/README/) })
+            return filenamesList.some((elem) => { return elem.match(/package\.json/) })
       - name: Run this step only if README changes are detected
         if: ${{ steps.check-for-readme-changes.outputs.callback_return == 'true' }}
         run: |
-          echo "This REF includes README changes"
+          echo "This REF includes package.json changes"
