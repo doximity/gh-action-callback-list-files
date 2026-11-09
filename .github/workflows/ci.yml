@@ -2,12 +2,14 @@ on: [push]
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    runs-on: prod-k8s-runners
+    container:
+      image: node:24.22.1-bookworm
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
-          node-version: '24'
+          node-version: '>=24.22.1 <25'
       - run: npm install
       - run: npm run lint
       - run: npm test
